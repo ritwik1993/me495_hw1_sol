@@ -29,5 +29,8 @@ if __name__ == '__main__':
         rospy.wait_for_service('turtle1/teleport_absolute')
         turtle_initial=rospy.ServiceProxy('turtle1/teleport_absolute', TeleportAbsolute)
         turtle_initial(2.5,2.5,0.785)
-        trajectory_driver(5)
+        if len(sys.argv)>1:
+            trajectory_driver(float(sys.argv[1]))
+        else:
+            trajectory_driver(5)
     except rospy.ROSInterruptException: pass
